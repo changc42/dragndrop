@@ -1,9 +1,9 @@
-import { combineReducers } from "redux";
+import { combineReducers, createStore } from "redux";
 import { positionReducer } from "./positionReducer";
 
-console.log(positionReducer);
 let reducers = combineReducers({
   position: positionReducer
 });
 
-export default reducers;
+let store = createStore(reducers);
+export default store;
