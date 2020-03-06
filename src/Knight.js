@@ -1,17 +1,9 @@
 import React from "react";
-import { ItemTypes } from "./Constants";
-import { useDrag } from "react-dnd";
+import "./css/Knight.css";
 
-function Knight() {
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.KNIGHT },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
-  });
-
+function Knight({ dragID }) {
   return (
-    <span ref={drag} style={{ fontSize: "50px" }}>
+    <span ref={dragID} style={{ fontSize: "50px" }}>
       ♘
     </span>
   );

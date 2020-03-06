@@ -1,6 +1,9 @@
 import { combineReducers } from "redux";
-import 
+import { positionReducer } from "./positionReducer";
 
+console.log(positionReducer);
 let reducers = combineReducers({
-  knightPosition: knightPositionReducer;
-})
+  position: positionReducer
+});
+
+export default reducers;

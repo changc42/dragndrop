@@ -1,35 +1,27 @@
 import React from "react";
 import Knight from "./Knight";
-import { useDrop } from "react-dnd";
-import { ItemTypes } from "./Constants";
+import "./css/Square.css";
 
-export default function Square({ x, y, black, children, setKnightPosition }) {
-  const [{ isOver }, drop] = useDrop({
-    accept: ItemTypes.KNIGHT,
-    drop: () => setKnightPosition([x, y]),
-    collect: monitor => ({
-      isOver: monitor.isOver()
-    })
-  });
-
+function Square({ isBlack, hasKnight, dropID, dragID, dropProps }) {
   function getBackgroundColor() {
-    if (isOver) return "red";
-    if (black) return "black";
+    if (dropProps.isOver) return "red";
+    if (isBlack) return "black";
     return "white";
   }
 
+  let contents = hasKnight ? <Knight ref={dragID} /> : null;
+
   return (
     <div
+      className="Square"
       style={{
-        width: "100%",
-        height: "100%",
-        backgroundColor: getBackgroundColor(),
-        color: black ? "white" : "black",
-        outline: "1px solid"
+        backgroundColor: getBackgroundColor()
       }}
-      ref={drop}
+      ref={dropID}
     >
-      {children}
+      {contents}
     </div>
   );
 }
+
+export default Square;

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { DndProvider } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
 import Knight from "./Knight";
 import Square from "./Square";
+import { connect } from "react-redux";
+import * as actions from "./redux/actions";
 
 function App() {
-  let [knightPosition, setKnightPosition] = useState([0, 0]);
-
   function renderSquare(i, [knightX, knightY]) {
     const x = i % 8;
     const y = Math.floor(i / 8);
@@ -16,7 +16,7 @@ function App() {
 
     return (
       <div key={i} style={{ width: "12.5%", height: "80px" }}>
-        <Square x={x} y={y} black={black} setKnightPosition={setKnightPosition}>
+        <Square x={x} y={y} black={black}>
           {piece}
         </Square>
       </div>
@@ -25,7 +25,7 @@ function App() {
 
   const squares = [];
   for (let i = 0; i < 64; i++) {
-    squares.push(renderSquare(i, knightPosition));
+    squares.push(renderSquare(i, this.props.position));
   }
 
   return (
@@ -43,4 +43,10 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    position: state.position
+  };
+}
+
+export default connect(mapStateToProps, actions)(App);
