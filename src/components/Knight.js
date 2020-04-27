@@ -6,13 +6,13 @@ import itemTypes from "./dndTypes";
 function Knight({ color }) {
   const [{ isDragging }, dragID] = useDrag({
     item: { type: itemTypes.KNIGHT },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   return (
-    <span style={{ color }} className={Knight} ref={dragID}>
+    <span style={{ color }} className="Knight" ref={dragID}>
       ♘
     </span>
   );

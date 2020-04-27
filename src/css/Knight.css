@@ -1,4 +1,9 @@
 .Knight {
   font-size: 50px;
   text-align: center;
+  position: absolute;
+  top: 100;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

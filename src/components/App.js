@@ -6,6 +6,7 @@ import Knight from "./Knight";
 import Square from "./Square";
 import { connect } from "react-redux";
 import * as actions from "../redux/actions";
+import "../css/App.css";
 
 function App({ position }) {
   //renders a single square
@@ -25,22 +26,14 @@ function App({ position }) {
 
   return (
     <DndProvider backend={Backend}>
-      <div
-        style={{
-          width: "50%",
-          display: "flex",
-          flexWrap: "wrap"
-        }}
-      >
-        {squares}
-      </div>
+      <div className="App">{squares}</div>
     </DndProvider>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    position: state.position
+    position: state.position,
   };
 }
 
